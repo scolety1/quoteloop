@@ -1,0 +1,13 @@
+quote_id,customer_name,job_description,quoted_amount,created_date,sent_date,expiration_date,status,customer_email,customer_phone,last_customer_response_date,last_follow_up_date,next_follow_up_date,notes,source,source_id,trade,closed_date
+QL-9001,Northstar Bakery,Walk-in cooler replacement,"$18,450.00",2026-07-28,2026-07-29,2026-08-28,engaged,ops@northstar.example,303-555-0101,2026-08-11,2026-08-08,2026-08-13,"Owner asked about lead time, permits included",Jobber Demo,JB-9001,HVAC,
+QL-9002,Alder Creek Dental,Panel and lighting upgrade,"$12,800",2026-08-01,2026-08-02,2026-09-02,sent,office@aldercreek.example,303-555-0102,,2026-08-05,2026-08-14,Awaiting partner review,Jobber Demo,JB-9002,Electrical,
+QL-9003,Rowan Family,Primary bath renovation,24600.00,2026-07-20,2026-07-22,2026-08-22,pending,rowan@example.com,720-555-0103,,,2026-08-13,Includes tile allowance,Jobber Demo,JB-9003,Remodeling,
+QL-9004,Juniper Market,Roof membrane repair,"$9,750",2026-08-05,2026-08-06,2026-09-05,open,facilities@juniper.example,720-555-0104,,2026-08-10,,West elevation only,Jobber Demo,JB-9004,Roofing,
+QL-9005,Bluebird Preschool,Playground drainage,6800,2026-08-09,2026-08-10,2026-09-10,sent,director@bluebird.example,303-555-0105,,,,Work scheduled around school hours,Jobber Demo,JB-9005,Drainage,
+QL-9006,Canyon Coffee,Espresso bar electrical rough-in,"$7,325.50",2026-08-02,2026-08-03,2026-09-03,accepted,owner@canyoncoffee.example,303-555-0106,2026-08-05,2026-08-04,,Approved by owner,Jobber Demo,JB-9006,Electrical,2026-08-07
+QL-9007,Ember Fitness,Locker room plumbing,15400,2026-07-18,2026-07-19,2026-08-19,lost,gm@emberfitness.example,720-555-0107,,2026-07-25,,Budget deferred,Jobber Demo,JB-9007,Plumbing,2026-08-03
+QL-9008,Pine Ridge HOA,Pool equipment enclosure,11200,2026-08-04,2026-08-05,2026-09-05,expired,board@pineridge.example,720-555-0108,,,,No response before expiration,Jobber Demo,JB-9008,Carpentry,
+QL-9009,Orchard Veterinary,Exam room cabinetry,"$13,600",2026-08-06,2026-08-07,2026-09-07,responded,manager@orchardvet.example,303-555-0109,2026-08-12,2026-08-09,2026-08-13,Discussing finish options,Jobber Demo,JB-9009,Carpentry,
+QL-9010,Solace Spa,Water heater replacement,8950,2026-08-08,2026-08-09,2026-09-09,sent,hello@solacespa.example,720-555-0110,,2026-08-11,2026-08-15,Access through rear mechanical room,Jobber Demo,JB-9010,Plumbing,
+QL-9011,Redtail Studio,Acoustic wall package,"$5,480",2026-08-11,,,draft,studio@redtail.example,303-555-0111,,,,Draft scope not yet issued,Jobber Demo,JB-9011,Interiors,
+QL-9012,Meadow & Main,Storefront HVAC balance,4200,2026-08-03,2026-08-04,2026-09-04,won,manager@meadowmain.example,720-555-0112,2026-08-05,2026-08-05,,Approved by district manager,Jobber Demo,JB-9012,HVAC,2026-08-06

@@ -1,0 +1,9 @@
+Estimate #,Client,Job Description,Total,Date Created,Date Sent,Valid Until,Quote Status,Email,Phone,Last Response,Last Contacted,Callback Date,Memo,Provider,External ID,Service Type,Decision Date
+MX-101,Sunrise Books,"Shelving, trim, and checkout counter","$8,400.00",8/1/2026,8/2/2026,9/2/2026,Open,hello@sunrise.example,303-555-0101,,8/8/2026,8/14/2026,"Use maple, not oak",Housecall Export,HC-101,Carpentry,
+MX-102,Westline Auto,Compressed air drops,6200,08-02-2026,08-03-2026,09-03-2026,Pending,service@westline.example,303-555-0102,,,08-15-2026,,Housecall Export,HC-102,Mechanical,
+MX-103,Lark Residence,Mini-split installation,"$11,250",2026-07-25,2026-07-27,2026-08-27,Responded,lark@example.com,,,,2026-08-13,"Second-floor office, low-wall unit",Housecall Export,HC-103,HVAC,
+MX-104,Hearth Cafe,Grease interceptor service,3850.50,7/30/2026,7/31/2026,8/31/2026,Approved,owner@hearth.example,720-555-0104,8/2/2026,8/1/2026,,,Housecall Export,HC-104,Plumbing,8/4/2026
+MX-105,Willow Arts,Gallery track lighting,"$4,980",2026-08-04,2026-08-05,2026-09-05,Declined,,, ,2026-08-07,,Funding changed,Housecall Export,HC-105,Electrical,2026-08-09
+MX-106,Copper Trail,Patio shade structure,14500,8/6/2026,8/7/2026,9/7/2026,Sent,contact@coppertrail.example,, , ,8/18/2026,Permit allowance excluded,Housecall Export,HC-106,Carpentry,
+MX-107,Atlas Therapy,Reception flooring,"$7,700.00",08/07/2026,08/08/2026,09/08/2026,Expired,frontdesk@atlastherapy.example,303-555-0107,,,,,Housecall Export,HC-107,Flooring,
+MX-108,Foxglove Farm,Pump controls,5300,2026-08-10,,,Draft,,720-555-0108,,,,"Draft only, site walk pending",Housecall Export,HC-108,Electrical,

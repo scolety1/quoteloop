@@ -1,0 +1,8 @@
+import { prioritizeQuote } from "./attention";
+import { evaluateCadence, isActionableCadence, isColdCandidate } from "./cadence";
+import { handledToday } from "./recoveryAnalytics";
+import type { AttentionResult, CadenceResult, Quote } from "./types";
+export type WorkGroup="CALL_NOW"|"OVERDUE"|"DUE_TODAY"|"GOING_COLD";
+export interface WorkItem{quote:Quote;attention:AttentionResult;cadence:CadenceResult;group:WorkGroup;}
+export function buildRecoveryQueue(quotes:Quote[],now:string):WorkItem[]{const order:WorkGroup[]=["CALL_NOW","OVERDUE","DUE_TODAY","GOING_COLD"];return quotes.flatMap(quote=>{const cadence=evaluateCadence(quote,now);const attention=prioritizeQuote(quote,now);if(!attention.lane||cadence.suppressed)return[];let group:WorkGroup|undefined;if(attention.lane==="CALL_NOW")group="CALL_NOW";else if(cadence.state==="overdue")group="OVERDUE";else if(isActionableCadence(cadence))group="DUE_TODAY";else if(attention.lane==="GOING_COLD"||isColdCandidate(quote,now))group="GOING_COLD";return group?[{quote,attention,cadence,group}]:[];}).sort((a,b)=>order.indexOf(a.group)-order.indexOf(b.group)||b.attention.score-a.attention.score);}
+export function dailyProgress(quotes:Quote[],now:string){const remaining=buildRecoveryQueue(quotes,now);const handled=quotes.filter(q=>handledToday(q,now));const ids=new Set([...remaining.map(x=>x.quote.id),...handled.map(q=>q.id)]);return {startCount:ids.size,handledCount:handled.length,remainingCount:remaining.length,remainingValue:remaining.reduce((s,x)=>s+x.quote.amount,0)};}

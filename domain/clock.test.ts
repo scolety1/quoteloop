@@ -1,0 +1,5 @@
+import { describe,expect,it } from "vitest";
+import { FixedClock,SystemClock } from "./clock";
+import { addUtcDays,atBusinessHour,compareUtcDays,isSameUtcDay,startOfMonthIso } from "./dates";
+import { DEMO_NOW } from "./types";
+describe("clock and UTC date semantics",()=>{it("injects a fixed test instant",()=>expect(new FixedClock(DEMO_NOW).now()).toBe(DEMO_NOW));it("system clock returns a valid current instant",()=>expect(Number.isNaN(Date.parse(new SystemClock().now()))).toBe(false));it("treats date-only callbacks at a fixed UTC business hour",()=>expect(atBusinessHour("2026-08-12")).toBe(DEMO_NOW));it("compares days without local-midnight drift",()=>{expect(isSameUtcDay("2026-08-12T00:01:00Z","2026-08-12T23:59:00Z")).toBe(true);expect(compareUtcDays("2026-08-11T23:59:00Z",DEMO_NOW)).toBe(-1);});it("crosses month and expiration boundaries deterministically",()=>{expect(startOfMonthIso("2026-09-01T00:01:00Z")).toBe("2026-09-01T00:00:00.000Z");expect(addUtcDays("2026-08-31T15:00:00Z",1).slice(0,10)).toBe("2026-09-01");});});

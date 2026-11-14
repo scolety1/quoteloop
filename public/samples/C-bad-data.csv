@@ -1,0 +1,7 @@
+quote_id,customer_name,job_description,quoted_amount,created_date,sent_date,expiration_date,status,source,source_id
+BAD-1,Granite Works,Loading dock repair,eight thousand,2026-08-01,2026-08-02,2026-09-02,sent,Legacy Export,BAD-1
+BAD-2,Moonrise Salon,Lighting repair,4200,2026-02-30,2026-03-02,2026-04-02,sent,Legacy Export,BAD-2
+BAD-3,,Kitchen ventilation,9300,2026-08-01,2026-08-02,2026-09-02,pending,Legacy Export,BAD-3
+BAD-4,Timberline School,Door hardware,,2026-08-01,2026-08-02,2026-09-02,open,Legacy Export,BAD-4
+BAD-5,Clearwater Lab,Air balancing,5100,2026-08-01,2026-08-02,2026-09-02,awaiting signature,Legacy Export,BAD-5
+BAD-6,Silver Finch,Roof inspection,2800,2026-08-08,2026-08-04,2026-08-03,sent,Legacy Export,BAD-6

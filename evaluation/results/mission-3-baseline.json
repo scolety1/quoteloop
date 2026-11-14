@@ -1,0 +1,370 @@
+{
+  "generatedAt": "2026-08-12T07:31:14.937Z",
+  "corpusSize": 203,
+  "familyCount": 29,
+  "holdoutSize": 29,
+  "metrics": {
+    "actionableRecall": 0.9375,
+    "nonActionablePrecision": 0.9231,
+    "laneCorrectness": 0.9655,
+    "cadenceCorrectness": 1,
+    "falseUrgentCount": 7,
+    "missedActionCount": 7,
+    "evidenceCorrectness": 1
+  },
+  "criticalFailures": [
+    {
+      "id": "m4-21-1",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-1",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-1",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-2",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-2",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-2",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-3",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-3",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-3",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-4",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-4",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-4",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-5",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-5",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-5",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-6",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-6",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-6",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-7",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": true
+    },
+    {
+      "id": "m4-21-7",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": true
+    },
+    {
+      "id": "m4-21-7",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": true
+    }
+  ],
+  "failures": [
+    {
+      "id": "m4-20-1",
+      "family": "near expiration",
+      "message": "Expected actionable but absent",
+      "holdout": false
+    },
+    {
+      "id": "m4-20-2",
+      "family": "near expiration",
+      "message": "Expected actionable but absent",
+      "holdout": false
+    },
+    {
+      "id": "m4-20-3",
+      "family": "near expiration",
+      "message": "Expected actionable but absent",
+      "holdout": false
+    },
+    {
+      "id": "m4-20-4",
+      "family": "near expiration",
+      "message": "Expected actionable but absent",
+      "holdout": false
+    },
+    {
+      "id": "m4-20-5",
+      "family": "near expiration",
+      "message": "Expected actionable but absent",
+      "holdout": false
+    },
+    {
+      "id": "m4-20-6",
+      "family": "near expiration",
+      "message": "Expected actionable but absent",
+      "holdout": false
+    },
+    {
+      "id": "m4-20-7",
+      "family": "near expiration",
+      "message": "Expected actionable but absent",
+      "holdout": true
+    },
+    {
+      "id": "m4-21-1",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-1",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-1",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-2",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-2",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-2",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-3",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-3",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-3",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-4",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-4",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-4",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-5",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-5",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-5",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-6",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-6",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-6",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": false
+    },
+    {
+      "id": "m4-21-7",
+      "family": "already expired source sent",
+      "message": "Expected suppressed/non-actionable but queued",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": true
+    },
+    {
+      "id": "m4-21-7",
+      "family": "already expired source sent",
+      "message": "Expected lane |WATCH; got GOING_COLD",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": true
+    },
+    {
+      "id": "m4-21-7",
+      "family": "already expired source sent",
+      "message": "Expected suppressed=true; got false",
+      "critical": "expired quote incorrectly actionable",
+      "holdout": true
+    }
+  ],
+  "ranking": {
+    "passed": 4,
+    "total": 4,
+    "failures": []
+  },
+  "simulation": {
+    "days": 90,
+    "quoteCount": 6,
+    "observations": 540,
+    "zombieCount": 0,
+    "thrashCount": 0,
+    "earlyCallbackCount": 0,
+    "closedActiveCount": 0,
+    "failures": []
+  }
+}

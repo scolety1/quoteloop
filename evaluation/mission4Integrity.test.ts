@@ -1,0 +1,26 @@
+import { beforeEach,describe,expect,it,vi } from "vitest";
+import { evaluateCadence } from "../domain/cadence";
+import { addUtcDays } from "../domain/dates";
+import { logFollowUpAttempt,markQuoteLost,markQuoteWon } from "../domain/lifecycle";
+import { calculateRecoveryAnalytics,handledToday } from "../domain/recoveryAnalytics";
+import { buildRecoveryQueue,dailyProgress } from "../domain/recoveryQueue";
+import type { Quote } from "../domain/types";
+import { buildCorpus,EVAL_NOW } from "./corpus";
+import { buildImportPreview,commitImport } from "../importing/importService";
+import { FixedClock } from "../domain/clock";
+import { LocalQuoteRepository,QUOTELOOP_CORRUPT_STORAGE_KEY,QUOTELOOP_V3_STORAGE_KEY } from "../repositories/LocalQuoteRepository";
+import { migratePersistedState } from "../repositories/migration";
+const q=(id:string,amount:number,status:Quote["status"]="sent",sent=-10):Quote=>({id,customerName:id,serviceDescription:"Integrity",trade:"Test",amount,createdAt:addUtcDays(EVAL_NOW,sent-1),sentAt:addUtcDays(EVAL_NOW,sent),status,notes:"",originalId:id,sourceProvider:"Manual",activities:[]});
+const attempt=(quote:Quote,days:number,outcome:"no_answer"|"message_sent"="no_answer")=>logFollowUpAttempt(quote,{channel:"call",outcomeCode:outcome,occurredAt:addUtcDays(EVAL_NOW,days)});
+describe("Mission 4 financial, temporal, reconciliation, and persistence integrity",()=>{
+beforeEach(()=>localStorage.clear());
+it("suppresses every expired holdout and queues every near-expiration holdout",()=>{const cases=buildCorpus().filter(x=>x.holdout&&["already expired source sent","near expiration"].includes(x.family));for(const s of cases){const queued=buildRecoveryQueue([s.quote],EVAL_NOW).length>0;expect(queued,s.id).toBe(s.family==="near expiration");if(s.family.startsWith("already"))expect(evaluateCadence(s.quote,EVAL_NOW).suppressed).toBe(true)}});
+it("calculates exact revenue, conversion, coverage, outcomes, and loss reasons",()=>{const openA=attempt(q("a",1000),-8),openB=q("b",2000),won=markQuoteWon(attempt(q("w",3000),-6,"message_sent"),addUtcDays(EVAL_NOW,-1)),lost=markQuoteLost(q("l",4000),addUtcDays(EVAL_NOW,-1),"Price");const a=calculateRecoveryAnalytics([openA,openB,won,lost],EVAL_NOW);expect(a).toMatchObject({pendingRevenue:3000,wonRevenue:3000,lostRevenue:4000,openQuoteCount:2,conversionRate:.5,noFollowUpCount:1,followUpCoverage:.5,outcomes:{no_answer:1,message_sent:1},lossReasons:{Price:1}})});
+it("keeps every whole-day aging boundary in exactly one correctly labeled bucket",()=>{const days=[0,3,4,7,8,14,15,30,31];const quotes=days.map(d=>q(`d${d}`,d+1,"sent",-d));const a=calculateRecoveryAnalytics(quotes,EVAL_NOW);expect(a.aging.map(x=>x.count)).toEqual([2,2,2,2,1]);expect(a.aging.reduce((n,x)=>n+x.count,0)).toBe(quotes.length)});
+it("does not fabricate a zero-hour first response from impossible pre-send activity",()=>{const impossible=attempt(q("future",1000,"sent",-2),-3);const a=calculateRecoveryAnalytics([impossible],EVAL_NOW);expect(a.averageFirstFollowUpHours).toBeNull();expect(a.medianFirstFollowUpHours).toBeNull()});
+it("counts handled work once while preserving remaining quoted value",()=>{const handled=attempt(q("handled",1000),0),remaining=q("remaining",2500);expect(handledToday(handled,EVAL_NOW)).toBe(true);expect(dailyProgress([handled,remaining],EVAL_NOW)).toEqual({startCount:2,handledCount:1,remainingCount:1,remainingValue:2500})});
+it("keeps closed quotes out even with hostile future cadence and inbound fields",()=>{const won={...markQuoteWon(q("won",5000),EVAL_NOW),nextFollowUpAt:addUtcDays(EVAL_NOW,-1),lastInboundResponseAt:addUtcDays(EVAL_NOW,1)};const lost={...markQuoteLost(q("lost",6000),EVAL_NOW,"Price"),nextFollowUpAt:EVAL_NOW};expect(buildRecoveryQueue([won,lost],EVAL_NOW)).toEqual([])});
+it("preserves legitimate same-customer quotes with different stable provider IDs",()=>{const csv=`quote_id,customer_name,job_description,quoted_amount,created_date,sent_date,status,source,source_id\n1,Acme,Repair A,5000,2026-08-01,2026-08-02,sent,Provider,P-1\n2,Acme,Repair B,5000,2026-08-01,2026-08-02,sent,Provider,P-2`;const p=buildImportPreview({csvText:csv,filename:"two.csv",existingQuotes:[],importedAt:EVAL_NOW});const r=commitImport(p,[],new Set(p.rows.map(x=>x.sourceRow)));expect(r.quotes).toHaveLength(2);expect(new Set(r.quotes.map(x=>x.provenance?.externalId)).size).toBe(2)});
+it("migrates partial legacy activities without losing IDs or history",()=>{const legacy={...q("legacy",1000),activities:[{id:"old",occurredAt:addUtcDays(EVAL_NOW,-2),direction:"outbound" as const,channel:"call" as const,note:"Voicemail",outcome:"Voicemail"}]};const state=migratePersistedState(JSON.stringify([legacy]),null,[]);expect(state.quotes[0].activities[0]).toMatchObject({id:"old",kind:"follow_up_attempt",outcomeCode:"voicemail_left"})});
+it("quarantines corrupt V3 bytes and emits an integrity warning",async()=>{localStorage.setItem(QUOTELOOP_V3_STORAGE_KEY,"{broken");const spy=vi.spyOn(console,"error").mockImplementation(()=>{});const quotes=await new LocalQuoteRepository(new FixedClock(EVAL_NOW)).list();expect(quotes.length).toBeGreaterThan(0);expect(localStorage.getItem(QUOTELOOP_CORRUPT_STORAGE_KEY)).toBe("{broken");expect(spy).toHaveBeenCalledWith(expect.stringContaining("quarantined"),expect.anything());spy.mockRestore()});
+});

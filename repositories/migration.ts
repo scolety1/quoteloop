@@ -1,0 +1,9 @@
+import { legacyOutcome } from "../domain/lifecycle";
+import type { ImportLedgerEntry } from "../importing/types";
+import type { Quote, QuoteActivity } from "../domain/types";
+export const STORAGE_VERSION=3 as const;
+export interface PersistedStateV3{version:3;quotes:Quote[];imports:ImportLedgerEntry[];}
+function migrateActivity(activity:QuoteActivity,quoteId:string):QuoteActivity{if(activity.kind)return activity;return {...activity,quoteId,kind:activity.direction==="outbound"?"follow_up_attempt":activity.direction==="inbound"?"customer_engagement":"lifecycle",provenance:activity.direction==="outbound"?"migration":activity.provenance??"migration",outcomeCode:activity.direction==="outbound"?legacyOutcome(activity.outcome):undefined,directContact:activity.direction==="outbound"?!["no_answer","voicemail_left","message_sent"].includes(legacyOutcome(activity.outcome)):undefined};}
+export function migrateQuotes(quotes:Quote[]):Quote[]{return quotes.map(q=>({...q,activities:(q.activities??[]).map(a=>migrateActivity(a,q.id))}));}
+export function migratePersistedState(raw:string|null,legacyImports:string|null,fallback:Quote[]):PersistedStateV3{if(!raw)return {version:3,quotes:migrateQuotes(fallback),imports:safeImports(legacyImports)};try{const parsed=JSON.parse(raw) as PersistedStateV3|Quote[];if(Array.isArray(parsed))return {version:3,quotes:migrateQuotes(parsed),imports:safeImports(legacyImports)};if(parsed.version===3&&Array.isArray(parsed.quotes))return {version:3,quotes:migrateQuotes(parsed.quotes),imports:Array.isArray(parsed.imports)?parsed.imports:[]};}catch{return {version:3,quotes:migrateQuotes(fallback),imports:[]};}return {version:3,quotes:migrateQuotes(fallback),imports:[]};}
+function safeImports(raw:string|null):ImportLedgerEntry[]{try{const parsed=JSON.parse(raw??"[]");return Array.isArray(parsed)?parsed:[];}catch{return[];}}

@@ -1,0 +1,5 @@
+quote_id,customer_name,job_description,quoted_amount,created_date,sent_date,expiration_date,status,notes,source,source_id,trade
+QL-9001,Northstar Bakery,Walk-in cooler replacement,"$19,200.00",2026-07-28,2026-07-29,2026-08-28,engaged,Revised compressor allowance,Jobber Demo,JB-9001,HVAC
+QL-9002,Alder Creek Dental,Panel and lighting upgrade,"$12,800",2026-08-01,2026-08-02,2026-09-02,sent,Awaiting partner review,Jobber Demo,JB-9002,Electrical
+QL-9003,Rowan Family,Primary bath and laundry renovation,26750,2026-07-20,2026-07-22,2026-08-22,pending,Expanded scope,Jobber Demo,JB-9003,Remodeling
+QL-9013,Sage Hotel,Boiler controls replacement,17800,2026-08-10,2026-08-11,2026-09-11,sent,New estimate,Jobber Demo,JB-9013,HVAC
