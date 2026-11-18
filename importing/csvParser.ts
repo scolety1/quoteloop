@@ -2,12 +2,14 @@ import Papa from "papaparse";
 import type { ImportFinding, ParsedCsv } from "./types";
 
 function uniqueHeaders(source: string[]): string[] {
-  const seen = new Map<string, number>();
+  const used = new Set<string>();
   return source.map((value, index) => {
     const base = value.replace(/^\uFEFF/, "").trim() || `Column ${index + 1}`;
-    const count = (seen.get(base.toLowerCase()) ?? 0) + 1;
-    seen.set(base.toLowerCase(), count);
-    return count === 1 ? base : `${base} (${count})`;
+    let candidate = base;
+    let suffix = 2;
+    while (used.has(candidate.toLowerCase())) candidate = `${base} (${suffix++})`;
+    used.add(candidate.toLowerCase());
+    return candidate;
   });
 }
 
@@ -39,7 +41,10 @@ export function parseCsv(text: string): ParsedCsv {
   const rows = data.slice(1).map((cells, index) => {
     const rawValues: Record<string, string> = {};
     headers.forEach((header, columnIndex) => {
-      rawValues[header] = String(cells[columnIndex] ?? "");
+      // CSV headers are data, including names such as __proto__.
+      Object.defineProperty(rawValues, header, {
+        value: String(cells[columnIndex] ?? ""), enumerable: true, writable: true, configurable: true,
+      });
     });
     if (cells.length > headers.length) {
       findings.push({
